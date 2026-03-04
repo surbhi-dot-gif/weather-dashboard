@@ -3,6 +3,21 @@ import axios from "axios";
 
 const router = express.Router();
 
+// Utility function for alerts
+const checkAlerts = (weatherData) => {
+  const alerts = [];
+  if (weatherData.main.temp < 10) {
+    alerts.push("Temperature below 10°C – Cold alert!");
+  }
+  if (weatherData.wind.speed > 20) {
+    alerts.push("High wind speed – Secure outdoor items!");
+  }
+  if (weatherData.weather[0].main.toLowerCase().includes("rain")) {
+    alerts.push("Rain alert – Carry umbrella!");
+  }
+  return alerts;
+};
+
 router.get("/:city", async (req, res) => {
   try {
     const city = req.params.city;
@@ -13,10 +28,13 @@ router.get("/:city", async (req, res) => {
       `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`
     );
 
+    const weatherData = response.data;
+
     const data = {
-      city: response.data.name,
-      temp: response.data.main.temp,
-      condition: response.data.weather[0].description,
+      city: weatherData.name,
+      temp: weatherData.main.temp,
+      condition: weatherData.weather[0].description,
+      alerts: checkAlerts(weatherData), // ✅ add alerts here
     };
 
     res.json(data);

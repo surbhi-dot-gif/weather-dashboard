@@ -99,6 +99,18 @@ const Dashboard = () => {
           <button onClick={() => saveFavorite(weatherData.city)}>
             Save to Favorites
           </button>
+
+          {/* Weather Alerts */}
+          {weatherData.alerts && weatherData.alerts.length > 0 && (
+            <div style={{ marginTop: "1rem", color: "red" }}>
+              <h3>Weather Alerts</h3>
+              <ul>
+                {weatherData.alerts.map((alert, idx) => (
+                  <li key={idx}>{alert}</li>
+                ))}
+              </ul>
+            </div>
+          )}
         </div>
       )}
 
