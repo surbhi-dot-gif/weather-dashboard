@@ -33,3 +33,7 @@ Weather data is passed into AI agent prompt. The agent generates contextual reco
 - Free tier APIs may have rate limits.
 - AI agent responses depend on provider availability.
 - Basic UI, not mobile‑optimized yet.
+
+## Live Deployment
+- Frontend (Netlify): [https://comfy-lollipop-22b4f4.netlify.app/](https://comfy-lollipop-22b4f4.netlify.app/)
+- Backend (Render): [https://weather-dashboard-1-8vlp.onrender.com](https://weather-dashboard-1-8vlp.onrender.com)
