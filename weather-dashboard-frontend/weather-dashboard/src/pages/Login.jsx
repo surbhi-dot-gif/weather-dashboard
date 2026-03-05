@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 
-function Login() {
+export default function Login() {
   const [formData, setFormData] = useState({
     email: "",
     password: "",
@@ -17,17 +17,17 @@ function Login() {
       const res = await axios.post("http://localhost:5000/api/auth/login", formData);
       localStorage.setItem("token", res.data.token); // save JWT
       alert("Login successful!");
-      // redirect to dashboard later
+      // TODO: redirect to dashboard
     } catch (err) {
       alert(err.response?.data?.error || "Login failed");
     }
   };
 
   return (
-    <div className="flex items-center justify-center h-screen bg-gray-100">
+    <div className="flex items-center justify-center min-h-screen bg-gray-100">
       <form
         onSubmit={handleSubmit}
-        className="bg-white p-6 rounded shadow-md w-80"
+        className="bg-white p-6 rounded-lg shadow-md w-80"
       >
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
 
@@ -37,7 +37,7 @@ function Login() {
           placeholder="Email"
           value={formData.email}
           onChange={handleChange}
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <input
@@ -46,7 +46,7 @@ function Login() {
           placeholder="Password"
           value={formData.password}
           onChange={handleChange}
-          className="w-full mb-3 p-2 border rounded"
+          className="w-full mb-3 p-2 border rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
         />
 
         <button
@@ -59,5 +59,3 @@ function Login() {
     </div>
   );
 }
-
-export default Login;

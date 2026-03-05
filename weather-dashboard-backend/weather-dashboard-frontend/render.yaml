@@ -1,0 +1,13 @@
+services:
+  - type: web
+    name: weather-dashboard-backend
+    env: node
+    buildCommand: cd weather-dashboard-backend && npm install
+    startCommand: cd weather-dashboard-backend && node server.js
+    envVars:
+      - key: WEATHER_API_KEY
+        sync: false
+      - key: MONGO_URI
+        sync: false
+      - key: AI_API_KEY
+        sync: false
